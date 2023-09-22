@@ -18,7 +18,7 @@ class Equipo(models.Model):
     barrio= models.CharField(max_length=30)
     titulos= models.IntegerField()
     division= models.CharField(max_length=10)
-    torneo = models.ForeignKey(Torneo,on_delete=models.CASCADE)
+    torneo = models.ManyToManyField(Torneo,blank=True)
 
     def __str__(self):
         return f"{self.nombre}"
