@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+
+
+{% block ContenidoQueCambia %}
+    
+    <ul>
+                
+        {% for torneo in torneos %}
+            <li>
+                <a href="{% url 'DetalleTorneo' torneo.id %}">{{torneo}}</a>
+            </li>
+            <div>
+                <button>
+                    <a href="{% url 'EliminarTorneo' torneo.id %}">Eliminar</a>
+                </button>
+                <button>
+                    <a href="{% url 'ActualizarTorneo' torneo.id %}">Editar</a>
+                </button>
+            </div>
+        {% endfor %}
+
+    </ul>
+    <a href="{% url 'CrearTorneo' %}">Crear torneo</a>
+
+{% endblock ContenidoQueCambia %}
+    

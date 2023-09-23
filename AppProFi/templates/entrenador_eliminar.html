@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+
+{% block ContenidoQueCambia %}
+    
+<form method="post">{% csrf_token %}
+
+    <p>Está seguro de eliminar el entrenador?</p>
+
+    <button type="submit">Confirmar</button>
+    <button><a href="{% url 'ListaEntrenadores' %}">Cancelar</a></button>
+</form>
+
+
+{% endblock ContenidoQueCambia %}
+    

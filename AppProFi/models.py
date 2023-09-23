@@ -28,18 +28,18 @@ class Jugador(models.Model):
     nombre= models.CharField(max_length=30)
     apellido= models.CharField(max_length=30)
     edad= models.IntegerField()
-    equipo= models.ForeignKey(Equipo,on_delete=models.CASCADE, null=False,blank=False)
+    equipo= models.OneToOneField(Equipo,on_delete=models.CASCADE, null=False,blank=False)
     posicion= models.CharField(max_length=2)
 
     def __str__(self):
-        return f"{self.apellido}, {self.nombre}"
+        return f"{self.apellido}, {self.nombre},Equipo: {self.equipo}"
 
 class Entrenador(models.Model):
         
     nombre= models.CharField(max_length=30)
     apellido= models.CharField(max_length=30)
     edad= models.IntegerField()
-    equipo= models.ForeignKey(Equipo,on_delete=models.CASCADE, null=False,blank=False)
+    equipo= models.OneToOneField(Equipo,on_delete=models.CASCADE, null=False,blank=False)
     titulos= models.IntegerField()
 
     def __str__(self):

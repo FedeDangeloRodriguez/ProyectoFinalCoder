@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+
+
+{% block ContenidoQueCambia %}
+    
+    <ul>
+                
+        {% for jugador in jugadores %}
+            <li>
+                <a href="{% url 'DetalleJugador' jugador.id %}">{{jugador}}</a>
+            </li>
+            <div>
+                <button>
+                    <a href="{% url 'EliminarJugador' jugador.id %}">Eliminar</a>
+                </button>
+                <button>
+                    <a href="{% url 'ActualizarJugador' jugador.id %}">Editar</a>
+                </button>
+            </div>
+        {% endfor %}
+
+    </ul>
+    <a href="{% url 'CrearJugador' %}">Crear jugador</a>
+
+{% endblock ContenidoQueCambia %}
+    

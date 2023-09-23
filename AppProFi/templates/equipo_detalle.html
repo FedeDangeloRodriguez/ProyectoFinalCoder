@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+
+{% block ContenidoQueCambia %}
+
+<h1>Vista en detalle del Equipo</h1>
+<h3>
+    Equipo : {{equipo.nombre}}
+        {{equipo.barrio}}
+        {{equipo.titulos}}
+        {{equipo.division}}
+        {% for u in equipo.torneo.all %}
+        <li>{{u}}</li>
+        {% endfor %}
+
+        
+
+</h3>
+
+
+{% endblock ContenidoQueCambia %}
+    
