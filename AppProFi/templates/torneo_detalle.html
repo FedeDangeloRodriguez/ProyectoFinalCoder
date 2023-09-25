@@ -3,8 +3,43 @@
 
 {% block ContenidoQueCambia %}
 
-<h1>Vista en detalle del Torneo</h1>
-<h3>Torneo {{torneo.nombre}}, {{torneo.cantidad_equipos}},{{torneo.premio}},{{torneo.fecha_comienzo}}</h3>
+<table class="table">
+    <thead style="font-size: x-large;">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Equipos</th>
+        <th scope="col">Premio</th>
+        <th scope="col">Fecha de comienzo</th>
+    </tr>
+    </thead>
+    <tbody style="font-size: x-large;">
+      <tr>
+        <th scope="row">Torneo</th>
+        <td>{{torneo.nombre}}</td>
+        <td>
+            <button  class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+              Equipos
+            </button>
+            <div style="min-height: 120px;font-size: large;">
+                <div class="collapse collapse-horizontal" id="collapseWidthExample" style="background-color:transparent">
+                  <div class="card" style="width: 200px;background-color:transparent">
+                        {% for u in torneo.equipo_set.all  %}
+                            <ul class="list-group">
+                            <li style="background-color:brown;color: white;" class="list-group-item">{{u.nombre}}</li>
+                            </ul>
+                        {% endfor %}
+                  </div>
+                </div>
+            </div>
+          </td>
+        <td>{{torneo.premio}}</td>
+        <td>{{torneo.fecha_comienzo}}</td>
+      </tr>
+      <tr>
+      </tr>
+    </tbody>
+</table>
 
 {% endblock ContenidoQueCambia %}
     

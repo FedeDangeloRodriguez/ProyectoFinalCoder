@@ -3,8 +3,30 @@
 
 {% block ContenidoQueCambia %}
 
-<h1>Vista en detalle del Jugador</h1>
-<h3>Jugador {{jugador.nombre}}, {{jugador.apellido}},{{jugador.edad}},{{jugador.equipo}},{{jugador.posicion}}</h3>
+<table class="table">
+    <thead style="font-size: x-large;">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Equipo</th>
+        <th scope="col">Posición</th>
+      </tr>
+    </thead>
+    <tbody style="font-size: x-large;">
+      <tr>
+        <th scope="row">Jugador</th>
+        <td>{{jugador.nombre}}</td>
+        <td>{{jugador.apellido}}</td>
+        <td>{{jugador.edad}}</td>
+        <td>{{jugador.equipo}}</td>
+        <td>{{jugador.posicion}}</td>
+      </tr>
+      <tr>
+      </tr>
+    </tbody>
+</table>
 
 {% endblock ContenidoQueCambia %}
     

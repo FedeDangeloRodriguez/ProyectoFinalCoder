@@ -3,8 +3,30 @@
 
 {% block ContenidoQueCambia %}
 
-<h1>Vista en detalle del Entrenador</h1>
-<h3>Entrenador {{entrenador.nombre}}, {{entrenador.apellido}},{{entrenador.edad}},{{entrenador.equipo}},{{entrenador.titulos}}</h3>
+<table class="table">
+    <thead style="font-size: x-large;">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Equipo</th>
+        <th scope="col">Títulos</th>
+      </tr>
+    </thead>
+    <tbody style="font-size: x-large;">
+      <tr>
+        <th scope="row">Entrenador</th>
+        <td>{{entrenador.nombre}}</td>
+        <td>{{entrenador.apellido}}</td>
+        <td>{{entrenador.edad}}</td>
+        <td>{{entrenador.equipo}}</td>
+        <td>{{entrenador.titulos}}</td>
+      </tr>
+      <tr>
+      </tr>
+    </tbody>
+</table>
 
 {% endblock ContenidoQueCambia %}
     

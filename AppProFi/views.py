@@ -2,11 +2,16 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
+from django.contrib.auth import authenticate, login, logout
 
 from .models import Torneo,Equipo,Jugador,Entrenador
 
 
 # Create your views here.
+
+def inicio(req):
+    return render(req,"index.html",{"mensaje":"Bienvenidos a la página del prode!!"})
 
 def torneo(req):
 
@@ -133,3 +138,53 @@ class EntrenadorDelete(DeleteView):
     model= Entrenador
     template_name="entrenador_eliminar.html"
     success_url = "/app-profi/lista-entrenadores"
+
+def loginView(req):
+
+    if req.method == 'POST':
+
+        miFormulario = AuthenticationForm(req, data=req.POST)
+
+        if miFormulario.is_valid():
+
+            data = miFormulario.cleaned_data
+            usuario = data["username"]
+            psw = data["password"]
+
+            user = authenticate(username=usuario, password=psw)
+
+            if user:
+                login(req, user)
+                return render(req, "index.html", {"mensaje": f"Bienvenido {usuario}"})
+            else:
+                return render(req, "index.html", {"mensaje": "Datos incorrectos"})
+
+        else:
+            return render(req, "index.html", {"mensaje": "Formulario inválido"})
+
+    else:
+        miFormulario = AuthenticationForm()
+        return render(req, "login.html", {"miFomulario": miFormulario})
+
+def register(req):
+
+    if req.method == 'POST':
+
+        miFormulario = UserCreationForm(req.POST)
+
+        if miFormulario.is_valid():
+
+            data = miFormulario.cleaned_data
+
+            usuario = data["username"]
+
+            miFormulario.save()
+
+            return render(req, "index.html", {"mensaje": f"Usuario {usuario} creado con éxito!"})
+
+        else:
+            return render(req, "index.html", {"mensaje": "Formulario inválido"})
+
+    else:
+        miFormulario = UserCreationForm()
+        return render(req, "registro.html", {"miFomulario": miFormulario})

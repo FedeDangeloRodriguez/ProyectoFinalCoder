@@ -3,24 +3,42 @@
 
 {% block ContenidoQueCambia %}
     
-    <ul>
-                
+<ul>
+    <table class="table">
+        <thead style="font-size: x-large;">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Barrio</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+          </tr>
+        </thead>
         {% for equipo in equipos %}
-            <li>
-                <a href="{% url 'DetalleEquipo' equipo.id %}">{{equipo}}</a>
-            </li>
-            <div>
-                <button>
-                    <a href="{% url 'EliminarEquipo' equipo.id %}">Eliminar</a>
-                </button>
-                <button>
-                    <a href="{% url 'ActualizarEquipo' equipo.id %}">Editar</a>
-                </button>
-            </div>
-        {% endfor %}
+                <tbody style="font-size: x-large;">
+                    <tr>
+                      <th scope="row"><a href="{% url 'DetalleEquipo' equipo.id %}">Equipo</a></th>
+                      <td>{{equipo.nombre}}</td>
+                      <td>{{equipo.barrio}}</td>
+                      <td>
+                        <a class="btn btn-secondary" href="{% url 'ActualizarEquipo' equipo.id %}">Editar</a>
+                      </td>
+                      <td>
+                          <a class="btn btn-danger" href="{% url 'EliminarEquipo' equipo.id %}">Eliminar</a>
+                      </td>
 
-    </ul>
-    <a href="{% url 'CrearEquipo' %}">Crear Equipo</a>
+                    </tr>
+                    <tr>
+                    </tr>
+                  </tbody></a>
+        {% endfor %}
+        
+    </table>
+    <div>
+        <a class="btn btn-primary" href="{% url 'CrearEquipo' %}">Crear Equipo</a>
+    </div>
+</ul>
+
 
 {% endblock ContenidoQueCambia %}
     

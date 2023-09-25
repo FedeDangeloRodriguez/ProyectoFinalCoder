@@ -3,20 +3,38 @@
 
 {% block ContenidoQueCambia %}
 
-<h1>Vista en detalle del Equipo</h1>
-<h3>
-    Equipo : {{equipo.nombre}}
-        {{equipo.barrio}}
-        {{equipo.titulos}}
-        {{equipo.division}}
-        {% for u in equipo.torneo.all %}
-        <li>{{u}}</li>
-        {% endfor %}
-
-        
-
-</h3>
-
+<table class="table">
+    <thead style="font-size: x-large;">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Barrio</th>
+        <th scope="col">División</th>
+        <th scope="col">Títulos</th>
+        <th scope="col">Torneos</th>
+        <th scope="col">Jugadores</th>
+      </tr>
+    </thead>
+    <tbody style="font-size: x-large;">
+      <tr>
+        <th scope="row">Equipo</th>
+        <td>{{equipo.nombre}}</td>
+        <td>{{equipo.barrio}}</td>
+        <td>{{equipo.division}}</td>
+        <td>{{equipo.titulos}}</td>
+        <td> {% for u in equipo.torneo.all %}
+            <li>{{u}}</li>
+            {% endfor %}</td>
+        <td>{% for u in equipo.jugador_set.all  %}
+          <ul class="list-group">
+            <li style="background-color:transparent" class="list-group-item">{{u.nombre}}, {{u.apellido}}</li>
+          </ul>
+        {% endfor %}</td>
+      </tr>
+      <tr>
+      </tr>
+    </tbody>
+</table>
 
 {% endblock ContenidoQueCambia %}
     

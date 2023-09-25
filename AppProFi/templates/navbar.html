@@ -1,11 +1,21 @@
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
     <div class="container px-5">
-        <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+        <a class="navbar-brand" href="{% url 'Inicio' %}">Prode</a>
+        <div class="p-3 mb-2 bg-primary text-white"><a class="btn btn-primary" href="{% url 'ListaTorneos' %}">Torneos</a></div>
+        <div class="p-3 mb-2 bg-primary text-white"><a class="btn btn-primary" href="{% url 'ListaEquipos' %}">Equipos</a></div>
+        <div class="p-3 mb-2 bg-primary text-white"><a class="btn btn-primary" href="{% url 'ListaJugadores' %}">Jugadores</a></div>
+        <div class="p-3 mb-2 bg-primary text-white"><a class="btn btn-primary" href="{% url 'ListaEntrenadores' %}">Entrenadores</a></div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#!">Sign Up</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Log In</a></li>
+                {% if user.is_authenticated %}
+                    <p style="color: whitesmoke; font-size: x-large;">Bienvenido {{user.username}}</p>
+                    <div><a class="btn btn-primary" href="{% url 'Logout' %}">Logout</a></div>
+                    
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'Registrar' %}">Sign Up</a></li>
+                    <a class="btn btn-primary" href="{% url 'Login' %}">Login</a>
+                {% endif %}
             </ul>
         </div>
     </div>
