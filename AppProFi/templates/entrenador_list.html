@@ -2,40 +2,41 @@
 
 
 {% block ContenidoQueCambia %}
-<ul>
-    <table class="table">
-        <thead style="font-size: x-large;">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Equipo</th>
-            <th scope="col">Editar</th>
-            <th scope="col">Eliminar</th>
-          </tr>
-        </thead>
-        {% for entrenador in entrenadores %}
-                <tbody style="font-size: x-large;">
-                    <tr>
-                        <th scope="row"><a href="{% url 'DetalleEntrenador' entrenador.id %}">Entrenador</a></th>
-                        <td>{{entrenador.nombre}}</td>
-                        <td>{{entrenador.apellido}}</td>
-                        <td>{{entrenador.equipo}}</td>
-                        <td>
-                            <a class="btn btn-secondary" href="{% url 'ActualizarEntrenador' entrenador.id %}">Editar</a></td>
-                        <td>
-                            <a class="btn btn-danger" href="{% url 'EliminarEntrenador' entrenador.id %}">Eliminar</a></td>   
-                    </tr>
-                    <tr>
-                    </tr>
-                  </tbody></a>
-        {% endfor %}
-        
-    </table>
-    <div>
-        <a class="btn btn-primary" href="{% url 'CrearEntrenador' %}">Crear entrenador</a>
-    </div>
-</ul>
-   
+
+<section class="lista-pages">
+    {% if entrenadores %}             
+            {% for entrenador in entrenadores %}
+            <div class="card" style="width: 18rem;">
+                {% if entrenador.imagen %}
+                    <img style="width: 280px;" class="card-img-top" src="{{entrenador.imagen.url}}" alt="">
+                {% endif %}
+                <div class="card-body">  
+                    <h5 class="card-title" >{{entrenador.nombre}}</h5>  
+                    <a href="{% url 'DetalleEntrenador' entrenador.id %}" class="btn btn-primary">{{entrenador.nombre}}</a>
+                </div>
+            </div>
+            {% endfor %}
+    {% endif %}
+</section>
+<div>
+    <a class="btn btn-primary" href="{% url 'CrearEntrenador' %}">Crear entrenador</a>
+</div>
+
+<div class="pagination justify-content-center">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}.  
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+        {% endif %}
+    </span>
+</div>
+
 {% endblock ContenidoQueCambia %}
     

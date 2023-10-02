@@ -5,10 +5,6 @@ from .views import *
 
 urlpatterns = [
     path('', inicio, name= "Inicio" ),
-    path('torneos/', torneo, name= "Torneo" ),
-    path('equipos/', equipo, name= "Equipo" ),
-    path('jugadores/', jugador, name= "Jugador" ),
-    path('entrenadores/', entrenador, name= "Entrenador" ),
     path('lista-torneos/', TorneoList.as_view(), name= "ListaTorneos" ),
     path('detalle-torneo/<pk>', TorneoDetail.as_view(), name= "DetalleTorneo" ),
     path('crear-torneo/', TorneoCreate.as_view(), name= "CrearTorneo" ),
@@ -29,7 +25,9 @@ urlpatterns = [
     path('crear-entrenador/', EntrenadorCreate.as_view(), name= "CrearEntrenador" ),
     path('actualizar-entrenador/<pk>', EntrenadorUpdate.as_view(), name= "ActualizarEntrenador" ),
     path('eliminar-entrenador/<pk>', EntrenadorDelete.as_view(), name= "EliminarEntrenador" ),
-    path('login/', loginView, name="Login"),
-    path('logout/', LogoutView.as_view(template_name="index.html"), name="Logout"),
-    path('registrar/', register, name="Registrar"),
+    path('login/', loginView, name= "Login"),
+    path('logout/', LogoutView.as_view(template_name="logout.html"), name= "Logout"),
+    path('editar-perfil/', editar_perfil, name= "EditarPerfil"),
+    path('registrar/', register, name= "Registrar"),
+    path('editar-avatar/<pk>', AvatarEdit.as_view(), name= "EditarAvatar" ),
 ]

@@ -13,6 +13,11 @@
         <th scope="col">Títulos</th>
         <th scope="col">Torneos</th>
         <th scope="col">Jugadores</th>
+        {% if equipo.imagen %}
+            <th></th>
+        {% endif %}
+        <th scope="col">Editar</th>
+        <th scope="col">Eliminar</th>
       </tr>
     </thead>
     <tbody style="font-size: x-large;">
@@ -26,10 +31,18 @@
             <li>{{u}}</li>
             {% endfor %}</td>
         <td>{% for u in equipo.jugador_set.all  %}
-          <ul class="list-group">
-            <li style="background-color:transparent" class="list-group-item">{{u.nombre}}, {{u.apellido}}</li>
-          </ul>
-        {% endfor %}</td>
+            <ul class="list-group">
+              <li style="background-color:transparent" class="list-group-item">{{u.nombre}}, {{u.apellido}}</li>
+            </ul>
+        </td>
+        {% endfor %}
+        {% if equipo.imagen %}
+            <td><img style="width: 280px;" class="card-img-top" src="{{equipo.imagen.url}}" alt=""></td>
+        {% endif %}
+        <td>
+          <a class="btn btn-secondary" href="{% url 'ActualizarEquipo' equipo.id %}">Editar</a></td>
+        <td>
+          <a class="btn btn-danger" href="{% url 'EliminarEquipo' equipo.id %}">Eliminar</a></td> 
       </tr>
       <tr>
       </tr>

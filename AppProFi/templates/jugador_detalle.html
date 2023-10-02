@@ -12,6 +12,11 @@
         <th scope="col">Edad</th>
         <th scope="col">Equipo</th>
         <th scope="col">Posición</th>
+        {% if jugador.imagen %}
+            <th></th>
+        {% endif %}
+        <th scope="col">Editar</th>
+        <th scope="col">Eliminar</th>
       </tr>
     </thead>
     <tbody style="font-size: x-large;">
@@ -22,6 +27,13 @@
         <td>{{jugador.edad}}</td>
         <td>{{jugador.equipo}}</td>
         <td>{{jugador.posicion}}</td>
+        {% if jugador.imagen %}
+            <td><img style="width: 280px;" class="card-img-top" src="{{jugador.imagen.url}}" alt=""></td>
+        {% endif %}
+        <td>
+          <a class="btn btn-secondary" href="{% url 'ActualizarJugador' jugador.id %}">Editar</a></td>
+        <td>
+          <a class="btn btn-danger" href="{% url 'EliminarJugador' jugador.id %}">Eliminar</a></td> 
       </tr>
       <tr>
       </tr>

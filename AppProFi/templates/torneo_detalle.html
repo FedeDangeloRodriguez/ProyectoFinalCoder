@@ -2,7 +2,6 @@
 
 
 {% block ContenidoQueCambia %}
-
 <table class="table">
     <thead style="font-size: x-large;">
       <tr>
@@ -11,6 +10,11 @@
         <th scope="col">Equipos</th>
         <th scope="col">Premio</th>
         <th scope="col">Fecha de comienzo</th>
+        {% if torneo.imagen %}
+          <th></th>
+        {% endif %} 
+        <th scope="col">Editar</th>
+        <th scope="col">Eliminar</th>
     </tr>
     </thead>
     <tbody style="font-size: x-large;">
@@ -23,7 +27,7 @@
             </button>
             <div style="min-height: 120px;font-size: large;">
                 <div class="collapse collapse-horizontal" id="collapseWidthExample" style="background-color:transparent">
-                  <div class="card" style="width: 200px;background-color:transparent">
+                  <div class="card" style="width: 300px;background-color:transparent">
                         {% for u in torneo.equipo_set.all  %}
                             <ul class="list-group">
                             <li style="background-color:brown;color: white;" class="list-group-item">{{u.nombre}}</li>
@@ -35,6 +39,13 @@
           </td>
         <td>{{torneo.premio}}</td>
         <td>{{torneo.fecha_comienzo}}</td>
+        {% if torneo.imagen %}
+            <td><img style="width: 280px;" class="card-img-top" src="{{torneo.imagen.url}}" alt=""></td>
+        {% endif %}
+        <td>
+          <a class="btn btn-secondary" href="{% url 'ActualizarTorneo' torneo.id %}">Editar</a></td>
+        <td>
+          <a class="btn btn-danger" href="{% url 'EliminarTorneo' torneo.id %}">Eliminar</a></td> 
       </tr>
       <tr>
       </tr>

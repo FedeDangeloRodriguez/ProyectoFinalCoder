@@ -3,7 +3,7 @@
 
 {% block ContenidoQueCambia %}
     
-<form action="{% url 'CrearTorneo' %}" method="post">{% csrf_token %}
+<form action="{% url 'CrearTorneo' %}" enctype="multipart/form-data" method="post">{% csrf_token %}
 
     {{form.as_p}}
 

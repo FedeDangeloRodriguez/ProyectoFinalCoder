@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
     <div class="container px-5">
-        <a class="navbar-brand" href="{% url 'Inicio' %}">Prode</a>
+        <a class="navbar-brand" href="{% url 'Inicio' %}">InfoTorneos</a>
         <div class="p-3 mb-2 bg-primary text-white"><a class="btn btn-primary" href="{% url 'ListaTorneos' %}">Torneos</a></div>
         <div class="p-3 mb-2 bg-primary text-white"><a class="btn btn-primary" href="{% url 'ListaEquipos' %}">Equipos</a></div>
         <div class="p-3 mb-2 bg-primary text-white"><a class="btn btn-primary" href="{% url 'ListaJugadores' %}">Jugadores</a></div>
@@ -9,9 +9,12 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
                 {% if user.is_authenticated %}
-                    <p style="color: whitesmoke; font-size: x-large;">Bienvenido {{user.username}}</p>
-                    <div><a class="btn btn-primary" href="{% url 'Logout' %}">Logout</a></div>
-                    
+                    <p style="color: whitesmoke; font-size: x-large;margin: 10px;">Bienvenido {{user.username}}</p>
+                    {% if user.avatar_set.first.imagen %}
+                    <img src="{{user.avatar_set.first.imagen.url}}" height="30px" alt="avatar">
+                    {% endif %}
+                    <div><a style="margin: 10px;" class= "btn btn-secondary" href="{% url 'EditarPerfil' %}">Editar Perfil</a></div>
+                    <div style="margin: 10px;"><a class="btn btn-primary" href="{% url 'Logout' %}">Logout</a></div>
                 {% else %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'Registrar' %}">Sign Up</a></li>
                     <a class="btn btn-primary" href="{% url 'Login' %}">Login</a>
